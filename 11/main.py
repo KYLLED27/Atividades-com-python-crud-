@@ -1,5 +1,5 @@
 convidados = [
-    {"nome": "maria", "cpf": "123"}
+    {"nome": "maria", "cpf": "123","checking": False}
 ]
 
 def cadastrar():
@@ -10,58 +10,92 @@ def cadastrar():
 def listar():
     print(convidados)
 def buscar():
-    cpf1=input("Digite o CPF do convidado: ")
+    cpf=input("Digite o CPF do convidado: ")
     encontrado = False
     for busca in convidados:
-        if busca["cpf"] == cpf1:
+        if busca["cpf"] == cpf:
             print(busca)
             encontrado = True
     if not encontrado:
         print("convidado nao encontrado")  
         
 def editar():
-#def remover
-#def fazer
-#def mostrar
+    cpf = input("Digite o cpf do convidado para editar: ")
+    encontrado = False
+    for edita in convidados:
+        if edita["cpf"] == cpf:
+            novo=input("Digite o novo nome: ")
+            edita["nome"] = novo
+            print("novo nome cadastrado")
+            encontrado = True
+def remover():
+    cpf2 = input("Digite o CPF do convidado: ")
+    encontrado = False
+    for deletar in convidados:
+        if deletar["cpf"] == cpf2:
+            convidados.remove(deletar)
+            print("Convidado deletado com sucesso")
+            encontrado = True
+            break
+    if not encontrado:
+        print("Convidado não encontrado")
+
+def fazer():
+    cpf3 = input("Digite o CPF para checkin: ")
+    encontrado = False
+    for check in convidados:
+        if check["cpf"] == cpf3:
+            if check.get("checkin"):
+                print("Checkin já feito")
+            else:
+                check["checkin"] = True
+                print("Checkin feito com sucesso")
+            encontrado = True
+            break
+    if not encontrado:
+        print("Convidado não encontrado")
+
+def mostrar():
+    print("Lista de convidados:")
+    print(convidados)
 
 def exibir_menu():
-    print("\n---   MENU   ---")
-    print("1.Cadastrar")
-    print("2.Listar")
-    print("3.buscar")
-    print("4.editar")
-    print("5.remover")
-    print("6.Fazer Checkin")
-    print("7.mostrar relatorios")
-    print("8.sair")
+        print("\n---   MENU   ---")
+        print("1.Cadastrar")
+        print("2.Listar")
+        print("3.buscar")
+        print("4.editar")
+        print("5.remover")
+        print("6.Fazer Checkin")
+        print("7.mostrar relatorios")
+        print("8.sair")
     
 while True:
     exibir_menu()
-    opção=input("escolha uma opção: ")
-    if opção == "1":
+    opcao = input("escolha uma opção: ")
+    if opcao == "1":
         cadastrar()
         print()
-    elif opção == "2":
+    elif opcao == "2":
         listar()
         print()
-    elif opção == "3":
+    elif opcao == "3":
         buscar()
         print()
-    elif opção == "4":
+    elif opcao == "4":
         editar()
         print()
-    elif opção == "5":
+    elif opcao == "5":
+        print("Executando remover()...")
         remover()
-        print()
-    elif opção == "6":
+    elif opcao == "6":
         fazer()
         print()
-    elif opção == "7":
+    elif opcao == "7":
         mostrar()
         print()
-    elif opção == "8":
+    elif opcao == "8":
         print("vc saiu")
         break
     else:
         print("opção invalida")
-    
